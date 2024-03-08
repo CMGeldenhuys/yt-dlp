@@ -352,7 +352,7 @@ class ViuOTTIE(InfoExtractor):
                     'thumbnail': self._html_search_meta(['og:image'], webpage)}
             )
         query = {
-            'r': 'vod/ajax-detail',
+            'r': '/vod/detail',
             'platform_flag_label': 'web',
             'product_id': video_id,
         }
@@ -362,7 +362,7 @@ class ViuOTTIE(InfoExtractor):
             query['area_id'] = area_id
 
         product_data = self._download_json(
-            f'http://www.viu.com/ott/{country_code}/index.php', video_id,
+            'https://api-gateway-global.viu.com/api/mobile', video_id,
             'Downloading video info', query=query)['data']
 
         video_data = product_data.get('current_product')
